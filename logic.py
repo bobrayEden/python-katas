@@ -24,3 +24,10 @@ def beggars(values, n):
 # Solution avec un slice/step
 def beggars(values, n):
     return [sum(values[i::n]) for i in range(n)]
+
+"""
+Building towers
+Pour un nombre d'étage n, renvoyer une liste [' * ', '***'] (ici: n=2)
+"""
+def tower_builder(n_floors):
+    return [str('*' * (2 * n + 1)).center(1 + (n_floors - 1) * 2,) for n in range(n_floors)]
