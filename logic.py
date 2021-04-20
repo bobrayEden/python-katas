@@ -31,3 +31,33 @@ Pour un nombre d'étage n, renvoyer une liste [' * ', '***'] (ici: n=2)
 """
 def tower_builder(n_floors):
     return [str('*' * (2 * n + 1)).center(1 + (n_floors - 1) * 2,) for n in range(n_floors)]
+
+"""
+Choose best sum
+Dans le set ls, choisir le subset de longueur k dont la somme <= à la limite t
+"""
+# Ma solution, à noter : la ligne y = ls[:] plus nécessaire, on peut travailler directement depuis ls
+# Zappé de refactor cet aspect. Possible de refactor la boucle for dans le retour, aussi
+from itertools import combinations 
+def choose_best_sum(t, k, ls):
+    y = ls[:]
+    max = 0
+    test = set(list(combinations(y, k)))
+    for x in test:
+        path = sum(x)
+        if path >= max and path <= t:
+            max = path
+    return (None if max == 0 else max)
+
+# Solutions upvote 1
+import itertools
+def choose_best_sum(t, k, ls):
+    try: 
+        return max(sum(i) for i in itertools.combinations(ls,k) if sum(i)<=t)
+    except:
+        return None
+
+# Solution upvote 2
+from itertools import combinations
+def choose_best_sum(t, k, ls):
+    return max((sum(v) for v in combinations(ls,k) if sum(v)<=t), default=None)
