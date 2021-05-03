@@ -61,3 +61,31 @@ def choose_best_sum(t, k, ls):
 from itertools import combinations
 def choose_best_sum(t, k, ls):
     return max((sum(v) for v in combinations(ls,k) if sum(v)<=t), default=None)
+
+"""
+Rain Fall
+"""
+# Solution
+import numpy as np
+import re
+def get_target(town, strng):
+    lst = strng.splitlines()
+    return (x for x in lst if x.startswith(town + ":"))
+
+def get_rain(target):
+    pattern = re.compile('[0-9]*\.[0-9]*')   
+    rain = pattern.findall(target)
+    rain = [float(x) for x in rain]
+    return rain
+
+def mean(town, strng):        
+    target = get_target(town, strng)
+    rain = get_rain(''.join(target))
+    print(rain)
+    return np.mean(rain) if rain else -1
+    
+def variance(town, strng):
+    target = get_target(town, strng)
+    rain = get_rain(''.join(target))
+    print(rain)
+    return np.var(rain) if rain else -1

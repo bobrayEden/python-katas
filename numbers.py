@@ -58,3 +58,16 @@ def make_readable(seconds):
     hours, seconds = divmod(seconds, 3600)
     minutes, seconds = divmod(seconds, 60)
     return "{:02}:{:02}:{:02}".format(hours, minutes, seconds)
+
+"""
+Tortoise racing
+"""
+# Solution
+def race(v1, v2, g):
+    if v1 >= v2:
+        return None
+    t =  g * 3600 / (v2 - v1)
+    h = t // 3600
+    m = (t % 3600) // 60
+    s = int(t % 60)
+    return [h, m, s]
